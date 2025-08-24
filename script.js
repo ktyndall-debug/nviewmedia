@@ -375,4 +375,50 @@ const debouncedScrollHandler = debounce(() => {
 
 window.addEventListener('scroll', debouncedScrollHandler);
 
+// Video Modal functionality
+const videoModal = document.getElementById('videoModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalCategory = document.getElementById('modalCategory');
+const modalIframe = document.getElementById('modalIframe');
+const closeModalBtn = document.getElementById('closeModal');
+const modalBackdrop = document.querySelector('.modal-backdrop');
+const expandButtons = document.querySelectorAll('.expand-video');
+
+// Open video modal
+expandButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const videoId = button.getAttribute('data-video-id');
+        const title = button.getAttribute('data-title');
+        const category = button.getAttribute('data-category');
+        
+        // Update modal content
+        modalTitle.textContent = title;
+        modalCategory.textContent = category;
+        modalIframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&byline=0&title=0&portrait=0&controls=1`;
+        
+        // Show modal
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Close modal functions
+function closeModal() {
+    videoModal.classList.remove('active');
+    modalIframe.src = ''; // Stop video playback
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal event listeners
+closeModalBtn.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', closeModal);
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
 console.log('NView Media website loaded successfully! 🎥');
