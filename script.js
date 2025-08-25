@@ -159,21 +159,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Stats counter animation
-const stats = document.querySelectorAll('.stat h4');
+const counters = document.querySelectorAll('.counter');
 
-function animateStats() {
-    stats.forEach(stat => {
-        const target = parseInt(stat.textContent.replace('+', ''));
+function animateCounters() {
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
         const increment = target / 50;
         let current = 0;
         
         const updateCounter = () => {
             if (current < target) {
                 current += increment;
-                stat.textContent = Math.floor(current) + '+';
+                counter.textContent = Math.floor(current);
                 requestAnimationFrame(updateCounter);
             } else {
-                stat.textContent = target + '+';
+                counter.textContent = target;
             }
         };
         
@@ -182,12 +182,12 @@ function animateStats() {
 }
 
 // Intersection Observer for stats animation
-const statsSection = document.querySelector('.about-stats');
+const statsSection = document.querySelector('.about-stats-container');
 if (statsSection) {
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateStats();
+                animateCounters();
                 statsObserver.unobserve(entry.target);
             }
         });
