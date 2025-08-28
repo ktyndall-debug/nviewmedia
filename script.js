@@ -98,51 +98,84 @@ filterButtons.forEach(button => {
 // Contact form functionality
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+// Option 1: If using Web3Forms with standard submission (recommended for simplicity)
+// The form will submit normally and redirect to success page
 
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const phone = formData.get('phone');
-    const service = formData.get('service');
-    const message = formData.get('message');
-
-    // Basic validation
-    if (!name || !email || !service || !message) {
-        alert('Please fill in all required fields.');
-        return;
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
-        return;
-    }
-
-    // Create mailto link (since we don't have a backend)
-    const subject = `New Contact Form Submission - ${service}`;
-    const body = `Name: ${name}
-Email: ${email}
-Phone: ${phone || 'Not provided'}
-Service: ${service}
-
-Message:
-${message}`;
-
-    const mailtoLink = `mailto:info@nviewmedia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Open default email client
-    window.location.href = mailtoLink;
-
-    // Show success message
-    alert('Thank you for your message! Your email client will open with the message ready to send.');
-
-    // Reset form
-    contactForm.reset();
-});
+// Option 2: If you want AJAX submission (stays on same page)
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        // Check if access key is set
+        const accessKey = contactForm.querySelector('input[name="access_key"]').value;
+        
+        if (accessKey === 'YOUR-ACCESS-KEY-HERE') {
+            // If access key not set, use mailto fallback
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const service = formData.get('service');
+            const message = formData.get('message');
+            
+            // Create mailto link as fallback
+            const subject = `New Contact Form Submission - ${service}`;
+            const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nService: ${service}\n\nMessage:\n${message}`;
+            const mailtoLink = `mailto:info@nviewmedia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            window.location.href = mailtoLink;
+            alert('Please complete sending the email in your email client.');
+            contactForm.reset();
+            
+        } else {
+            // If you want AJAX submission instead of page redirect, uncomment below:
+            /*
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            const formData = new FormData(contactForm);
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Show success message
+                    formMessage.style.display = 'block';
+                    formMessage.style.background = '#28a745';
+                    formMessage.textContent = 'Thank you! We\'ll be in touch soon.';
+                    contactForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Show error message
+                formMessage.style.display = 'block';
+                formMessage.style.background = '#dc3545';
+                formMessage.textContent = 'Something went wrong. Please try again.';
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            }
+            */
+        }
+    });
+}
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

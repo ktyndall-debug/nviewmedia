@@ -366,7 +366,27 @@
                     </div>
                 </div>
                 <div class="contact-form" data-aos="fade-left">
-                    <form id="contactForm">
+                    <!-- 
+                    IMPORTANT: To activate this form:
+                    1. Go to https://web3forms.com
+                    2. Enter your email (info@nviewmedia.com)
+                    3. Get your free access key
+                    4. Replace YOUR-ACCESS-KEY-HERE below with your actual key
+                    5. The form will start working immediately!
+                    -->
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <!-- Replace with your Access Key -->
+                        <input type="hidden" name="access_key" value="7230d5b3-92e1-4289-973d-c77db028b563">
+                        
+                        <!-- Optional: Redirect after submission -->
+                        <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                        
+                        <!-- Email Subject Line -->
+                        <input type="hidden" name="subject" value="New Contact from NView Media Website">
+                        
+                        <!-- From Name for Email -->
+                        <input type="hidden" name="from_name" value="NView Media Contact Form">
+                        
                         <div class="form-group">
                             <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
@@ -379,18 +399,27 @@
                         <div class="form-group">
                             <select id="service" name="service" required>
                                 <option value="">Select a Service</option>
-                                <option value="corporate">Corporate Video Production</option>
-                                <option value="marketing">Marketing & Promotional</option>
-                                <option value="events">Event Documentation</option>
-                                <option value="post-production">Post-Production</option>
-                                <option value="other">Other</option>
+                                <option value="Corporate Video Production">Corporate Video Production</option>
+                                <option value="Marketing & Promotional">Marketing & Promotional</option>
+                                <option value="Event Documentation">Event Documentation</option>
+                                <option value="Post-Production">Post-Production</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <textarea id="message" name="message" rows="5" placeholder="Tell us about your project" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        
+                        <!-- Honeypot Spam Protection -->
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Send Message</button>
                     </form>
+                    
+                    <!-- Success/Error Messages -->
+                    <div id="formMessage" style="display: none; margin-top: 20px; padding: 15px; background: #28a745; color: white; border-radius: 4px;">
+                        Thank you! We'll be in touch soon.
+                    </div>
                 </div>
             </div>
         </div>
