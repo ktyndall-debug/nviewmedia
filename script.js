@@ -454,4 +454,82 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Check if mobile device
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+// Optimize animations for mobile
+if (isMobile) {
+    // Disable AOS on mobile
+    document.querySelectorAll('[data-aos]').forEach(element => {
+        element.removeAttribute('data-aos');
+        element.removeAttribute('data-aos-delay');
+    });
+    
+    // Disable parallax on mobile
+    window.addEventListener('scroll', () => {}, { passive: true });
+    
+    // Lazy load videos on mobile
+    const videoIframes = document.querySelectorAll('.portfolio-item iframe, .video-container iframe');
+    
+    if (videoIframes.length > 0) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (!iframe.hasAttribute('data-loaded')) {
+                        const src = iframe.getAttribute('src');
+                        if (src && !src.includes('background=1')) {
+                            // Add background=1 parameter for better mobile performance
+                            iframe.src = src + (src.includes('?') ? '&' : '?') + 'background=1';
+                        }
+                        iframe.setAttribute('data-loaded', 'true');
+                        videoObserver.unobserve(iframe);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '50px',
+            threshold: 0.01
+        });
+        
+        videoIframes.forEach(iframe => {
+            // Defer video loading on mobile
+            if (!iframe.src.includes('background=1')) {
+                videoObserver.observe(iframe);
+            }
+        });
+    }
+    
+    // Simplify card animations on mobile
+    const cards = document.querySelectorAll('.service-card, .portfolio-item');
+    cards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+        card.style.transition = 'none';
+    });
+    
+    // Optimize scroll event handling for mobile
+    let ticking = false;
+    const optimizedScroll = () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                // Only handle critical scroll updates
+                const scrollY = window.pageYOffset;
+                if (scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    };
+    
+    // Replace multiple scroll listeners with single optimized one
+    window.removeEventListener('scroll', setActiveNav);
+    window.removeEventListener('scroll', debouncedScrollHandler);
+    window.addEventListener('scroll', optimizedScroll, { passive: true });
+}
+
 console.log('NView Media website loaded successfully! 🎥');
