@@ -193,8 +193,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Stats counter animation
 const counters = document.querySelectorAll('.counter');
+let hasAnimated = false;
 
 function animateCounters() {
+    if (hasAnimated) return;
+    hasAnimated = true;
+    
     counters.forEach(counter => {
         const target = parseInt(counter.getAttribute('data-target'));
         const increment = target / 50;
@@ -214,19 +218,19 @@ function animateCounters() {
     });
 }
 
-// Intersection Observer for stats animation
-const statsSection = document.querySelector('.about-stats-container');
-if (statsSection) {
-    const statsObserver = new IntersectionObserver((entries) => {
+// Intersection Observer for achievements animation
+const achievementsSection = document.querySelector('.achievements-section');
+if (achievementsSection) {
+    const achievementsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 animateCounters();
-                statsObserver.unobserve(entry.target);
+                achievementsObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.3 });
     
-    statsObserver.observe(statsSection);
+    achievementsObserver.observe(achievementsSection);
 }
 
 // Add loading animation
