@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background Circle -->
+  <circle cx="16" cy="16" r="15" fill="#1a1a1a" stroke="#ff4500" stroke-width="1"/>
+  
+  <!-- Letter N stylized as film/video -->
+  <g transform="translate(16, 16)">
+    <!-- N Letter Shape with Video Camera Style -->
+    <path d="M -8 6 L -8 -6 L -5 -6 L -5 2 L 3 -6 L 5 -6 L 5 6 L 2 6 L 2 -2 L -6 6 Z" 
+          fill="#ff4500"/>
+    
+    <!-- Camera Lens Detail -->
+    <circle cx="7" cy="-2" r="2.5" fill="none" stroke="#ff4500" stroke-width="1"/>
+    <circle cx="7" cy="-2" r="1" fill="#ff4500"/>
+  </g>
+</svg>

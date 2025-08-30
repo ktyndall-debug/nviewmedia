@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator - NView Media</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .favicon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .favicon-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .favicon-preview {
+            display: inline-block;
+            margin: 10px auto;
+        }
+        .size-16 { width: 16px; height: 16px; }
+        .size-32 { width: 32px; height: 32px; }
+        .size-64 { width: 64px; height: 64px; }
+        .size-180 { width: 180px; height: 180px; }
+        
+        /* Favicon Design */
+        .favicon {
+            background: #1a1a1a;
+            border-radius: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+        }
+        
+        .favicon-n {
+            color: #ff4500;
+            font-family: 'Arial Black', sans-serif;
+            font-weight: 900;
+            position: relative;
+        }
+        
+        .size-16 .favicon-n { font-size: 10px; }
+        .size-32 .favicon-n { font-size: 20px; }
+        .size-64 .favicon-n { font-size: 40px; }
+        .size-180 .favicon-n { font-size: 110px; }
+        
+        .favicon::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 20%;
+            height: 20%;
+            border: 2px solid #ff4500;
+            border-radius: 50%;
+        }
+        
+        .size-16::after { border-width: 1px; }
+        
+        .instructions {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .instructions h2 {
+            color: #ff4500;
+        }
+        
+        .instructions ol {
+            line-height: 1.8;
+        }
+        
+        .instructions code {
+            background: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NView Media - Favicon Preview</h1>
+        
+        <div class="favicon-grid">
+            <div class="favicon-item">
+                <h3>16x16 (Browser Tab)</h3>
+                <div class="favicon-preview">
+                    <div class="favicon size-16">
+                        <span class="favicon-n">N</span>
+                    </div>
+                </div>
+                <p>Smallest size for browser tabs</p>
+            </div>
+            
+            <div class="favicon-item">
+                <h3>32x32 (Standard)</h3>
+                <div class="favicon-preview">
+                    <div class="favicon size-32">
+                        <span class="favicon-n">N</span>
+                    </div>
+                </div>
+                <p>Standard favicon size</p>
+            </div>
+            
+            <div class="favicon-item">
+                <h3>64x64 (High DPI)</h3>
+                <div class="favicon-preview">
+                    <div class="favicon size-64">
+                        <span class="favicon-n">N</span>
+                    </div>
+                </div>
+                <p>For high resolution displays</p>
+            </div>
+            
+            <div class="favicon-item">
+                <h3>180x180 (Apple Touch)</h3>
+                <div class="favicon-preview">
+                    <div class="favicon size-180">
+                        <span class="favicon-n">N</span>
+                    </div>
+                </div>
+                <p>For iOS home screen</p>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>How to Create PNG Favicons from This Design</h2>
+            <ol>
+                <li>Take screenshots of each favicon size shown above</li>
+                <li>Use an online tool like <strong>favicon.io</strong> or <strong>realfavicongenerator.net</strong></li>
+                <li>Or use an image editor to save each size as PNG:
+                    <ul>
+                        <li><code>favicon-16x16.png</code> - 16x16 pixels</li>
+                        <li><code>favicon-32x32.png</code> - 32x32 pixels</li>
+                        <li><code>favicon.ico</code> - Multi-resolution ICO file</li>
+                        <li><code>apple-touch-icon.png</code> - 180x180 pixels</li>
+                        <li><code>android-chrome-192x192.png</code> - 192x192 pixels</li>
+                        <li><code>android-chrome-512x512.png</code> - 512x512 pixels</li>
+                    </ul>
+                </li>
+                <li>The SVG version has already been created in the <code>assets</code> folder</li>
+            </ol>
+            
+            <h2>Design Elements</h2>
+            <ul>
+                <li><strong>Background:</strong> Dark (#1a1a1a) representing professional video production</li>
+                <li><strong>Letter N:</strong> Orange (#ff4500) representing NView brand</li>
+                <li><strong>Circle Element:</strong> Represents a camera lens/record button</li>
+                <li><strong>Style:</strong> Clean, modern, and scalable</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

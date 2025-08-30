@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Favicon.ico - NView Media</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #1a1a1a;
+            color: #fff;
+            font-family: 'Inter', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .favicon-creator {
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #ff4500;
+            margin-bottom: 30px;
+        }
+        .canvas-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        canvas {
+            display: block;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-crisp-edges;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+        .controls {
+            margin-top: 30px;
+        }
+        button {
+            background: #ff4500;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #ff6a00;
+            transform: translateY(-2px);
+        }
+        .instructions {
+            background: rgba(255, 69, 0, 0.1);
+            border: 1px solid #ff4500;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        .instructions h3 {
+            color: #ff4500;
+            margin-top: 0;
+        }
+        .instructions ol {
+            line-height: 1.8;
+        }
+        .instructions code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="favicon-creator">
+        <h1>NView Media Favicon Creator</h1>
+        
+        <div class="canvas-container">
+            <canvas id="favicon16" width="16" height="16"></canvas>
+        </div>
+        <div class="canvas-container">
+            <canvas id="favicon32" width="32" height="32"></canvas>
+        </div>
+        <div class="canvas-container">
+            <canvas id="favicon64" width="64" height="64"></canvas>
+        </div>
+        
+        <div class="controls">
+            <button onclick="downloadPNG(16)">Download 16x16 PNG</button>
+            <button onclick="downloadPNG(32)">Download 32x32 PNG</button>
+            <button onclick="downloadPNG(64)">Download 64x64 PNG</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>Instructions to Create favicon.ico:</h3>
+            <ol>
+                <li>Click each download button to save the PNG files</li>
+                <li>Go to <strong>favicon.io/favicon-converter/</strong> or <strong>icoconvert.com</strong></li>
+                <li>Upload the PNG files you downloaded</li>
+                <li>Download the generated <code>favicon.ico</code> file</li>
+                <li>Place it in the root directory of your website</li>
+            </ol>
+            
+            <h3>Alternative: Using ImageMagick (if installed):</h3>
+            <code>convert favicon-16.png favicon-32.png favicon-64.png favicon.ico</code>
+        </div>
+    </div>
+    
+    <script>
+        function drawFavicon(size) {
+            const canvas = document.getElementById(`favicon${size}`);
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = '#1a1a1a';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw N letter
+            ctx.fillStyle = '#ff4500';
+            ctx.font = `bold ${size * 0.6}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('N', size / 2, size / 2 + 1);
+            
+            // Draw small circle (camera lens indicator)
+            if (size >= 32) {
+                ctx.strokeStyle = '#ff4500';
+                ctx.lineWidth = size >= 64 ? 2 : 1;
+                ctx.beginPath();
+                ctx.arc(size * 0.75, size * 0.25, size * 0.1, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+        }
+        
+        function downloadPNG(size) {
+            const canvas = document.getElementById(`favicon${size}`);
+            const link = document.createElement('a');
+            link.download = `favicon-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Draw all favicons on load
+        window.onload = () => {
+            drawFavicon(16);
+            drawFavicon(32);
+            drawFavicon(64);
+        };
+    </script>
+</body>
+</html>
