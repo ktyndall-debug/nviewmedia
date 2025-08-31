@@ -1141,9 +1141,34 @@ body::before {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
+}
+
+/* Special layout for 5 cards - 3 on top, 2 on bottom centered */
+@media (min-width: 1200px) {
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 2rem;
+    }
+    
+    /* First row - 3 cards spanning 2 columns each */
+    .service-card:nth-child(1),
+    .service-card:nth-child(2),
+    .service-card:nth-child(3) {
+        grid-column: span 2;
+    }
+    
+    /* Second row - 2 cards centered */
+    .service-card:nth-child(4) {
+        grid-column: 2 / 4;
+    }
+    
+    .service-card:nth-child(5) {
+        grid-column: 4 / 6;
+    }
 }
 
 .service-card {
