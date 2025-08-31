@@ -277,7 +277,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.3;
+    opacity: 0.5;  /* Increased from 0.3 to 0.5 for better visibility */
     z-index: 1;
 }
 
@@ -289,7 +289,7 @@ body::before {
     
     .hero {
         background: var(--gradient-metal);
-        background-image: linear-gradient(180deg, #404040 0%, #1a1a1a 100%);
+        background-image: linear-gradient(180deg, #5B6670 0%, #1a1a1a 100%);
     }
 }
 
@@ -300,10 +300,10 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, 
-        rgba(26, 26, 26, 0.9) 0%, 
-        rgba(26, 26, 26, 0.7) 50%, 
-        rgba(26, 26, 26, 0.9) 100%);
+    background: linear-gradient(135deg, 
+        rgba(26, 26, 26, 0.7) 0%,   /* Reduced from 0.9 to 0.7 */
+        rgba(26, 26, 26, 0.5) 50%,  /* Reduced from 0.7 to 0.5 */
+        rgba(26, 26, 26, 0.7) 100%); /* Reduced from 0.9 to 0.7 */
     pointer-events: none;
 }
 
@@ -317,7 +317,7 @@ body::before {
     min-width: 177.77vh;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    filter: contrast(1.1) saturate(0.8);
+    filter: contrast(1.2) saturate(1);  /* Increased contrast and restored saturation */
 }
 
 .hero-overlay {
@@ -362,13 +362,16 @@ body::before {
     color: var(--white);
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9),  /* Enhanced shadow for better readability */
+                 0 0 30px rgba(0, 0, 0, 0.7);
 }
 
 .hero-title .highlight {
     color: var(--industrial-accent);
     display: block;
     margin-top: 0.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9),
+                 0 0 40px rgba(0, 163, 224, 0.3);  /* Added glow effect */
 }
 
 .hero-subtitle {
@@ -381,6 +384,7 @@ body::before {
     line-height: 1.6;
     font-weight: 400;
     letter-spacing: 0.02em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);  /* Added shadow for readability */
 }
 
 .hero-buttons {
