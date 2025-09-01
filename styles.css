@@ -1001,6 +1001,54 @@ body::before {
     color: var(--industrial-accent);
     position: relative;
     z-index: 2;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.step-number::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--industrial-accent);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+.step-number:hover {
+    transform: scale(1.2);
+    background: var(--industrial-accent);
+    color: var(--white);
+    box-shadow: 0 0 30px rgba(0, 163, 224, 0.6),
+                0 0 60px rgba(0, 163, 224, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-blue-light);
+}
+
+.step-number:hover::before {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Add hover effect to the entire process step */
+.process-step {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.process-step:hover {
+    transform: translateY(-5px);
+}
+
+.process-step:hover .step-content h4 {
+    color: var(--industrial-accent);
 }
 
 .step-content h4 {
@@ -1008,6 +1056,7 @@ body::before {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     font-weight: 700;
+    transition: color 0.3s ease;
 }
 
 .step-content p {
