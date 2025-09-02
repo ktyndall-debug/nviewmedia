@@ -472,37 +472,81 @@ if (isMobile) {
     // Disable parallax on mobile
     window.addEventListener('scroll', () => {}, { passive: true });
     
-    // Lazy load videos on mobile
-    const videoIframes = document.querySelectorAll('.portfolio-item iframe, .video-container iframe');
+    // Replace portfolio videos with thumbnails on mobile
+    const portfolioVideos = document.querySelectorAll('.portfolio-item .video-thumbnail iframe');
     
-    if (videoIframes.length > 0) {
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const iframe = entry.target;
-                    if (!iframe.hasAttribute('data-loaded')) {
-                        const src = iframe.getAttribute('src');
-                        if (src && !src.includes('background=1')) {
-                            // Add background=1 parameter for better mobile performance
-                            iframe.src = src + (src.includes('?') ? '&' : '?') + 'background=1';
-                        }
-                        iframe.setAttribute('data-loaded', 'true');
-                        videoObserver.unobserve(iframe);
-                    }
-                }
-            });
-        }, {
-            rootMargin: '50px',
-            threshold: 0.01
-        });
+    portfolioVideos.forEach(iframe => {
+        const videoId = iframe.getAttribute('data-video-id');
+        const title = iframe.getAttribute('data-title');
+        const category = iframe.getAttribute('data-category');
         
-        videoIframes.forEach(iframe => {
-            // Defer video loading on mobile
-            if (!iframe.src.includes('background=1')) {
-                videoObserver.observe(iframe);
+        if (videoId) {
+            // Create a static thumbnail element
+            const thumbnailDiv = document.createElement('div');
+            thumbnailDiv.className = 'video-thumbnail-static';
+            thumbnailDiv.style.cssText = `
+                width: 100%;
+                height: 100%;
+                background: #000;
+                background-image: url('https://vumbnail.com/${videoId}_large.jpg');
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                cursor: pointer;
+            `;
+            
+            // Add play button overlay
+            const playButton = document.createElement('div');
+            playButton.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 60px;
+                height: 60px;
+                background: rgba(0, 163, 224, 0.9);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            `;
+            playButton.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 3px;">
+                    <path d="M8 5v14l11-7z" fill="white"/>
+                </svg>
+            `;
+            
+            thumbnailDiv.appendChild(playButton);
+            
+            // Add click handler to open modal
+            thumbnailDiv.addEventListener('click', () => {
+                modalTitle.textContent = title;
+                modalCategory.textContent = category;
+                modalIframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&byline=0&title=0&portrait=0&controls=1`;
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Replace iframe with thumbnail
+            iframe.parentElement.replaceChild(thumbnailDiv, iframe);
+        }
+    });
+    
+    // Handle other videos (not in portfolio) - prevent autoplay
+    const otherVideos = document.querySelectorAll('.video-wrapper iframe, .hero-video iframe');
+    otherVideos.forEach(iframe => {
+        const src = iframe.getAttribute('src');
+        if (src && !src.includes('autoplay=0')) {
+            // Remove autoplay parameter or set it to 0
+            let newSrc = src.replace(/autoplay=1/g, 'autoplay=0');
+            if (!newSrc.includes('autoplay=')) {
+                newSrc += (newSrc.includes('?') ? '&' : '?') + 'autoplay=0';
             }
-        });
-    }
+            iframe.setAttribute('src', newSrc);
+        }
+    })
     
     // Simplify card animations on mobile
     const cards = document.querySelectorAll('.service-card, .portfolio-item');
