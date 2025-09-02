@@ -120,7 +120,6 @@ body::before {
     position: relative;
     z-index: 2;
     width: 100%;
-    overflow-x: hidden;
 }
 
 /* Industrial Navigation */
@@ -133,7 +132,7 @@ body::before {
     backdrop-filter: none;
     z-index: 1000;
     transition: var(--transition);
-    border-bottom: 3px solid var(--industrial-accent);
+    border-bottom: none;
     box-shadow: var(--shadow);
     /* Add will-change for smooth mobile scrolling */
     will-change: transform;
@@ -302,7 +301,7 @@ body::before {
     justify-content: center;
     overflow: hidden;
     background: var(--gradient-metal);
-    border-bottom: 2px solid rgba(0, 163, 224, 0.3);
+    border-bottom: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -606,9 +605,9 @@ section:nth-of-type(even) {
     padding: var(--section-padding);
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
     position: relative;
-    overflow: hidden;
-    border-top: 1px solid rgba(0, 163, 224, 0.2);
-    border-bottom: 1px solid rgba(0, 163, 224, 0.2);
+    overflow: visible;
+    border-top: none;
+    border-bottom: none;
 }
 
 /* Fix for section header alignment */
@@ -665,7 +664,6 @@ section:nth-of-type(even) {
     align-items: center;
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
 }
 
 .story-content {
@@ -729,7 +727,7 @@ section:nth-of-type(even) {
     border-radius: 12px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .value-item::before {
@@ -870,7 +868,7 @@ section:nth-of-type(even) {
     margin-bottom: 4rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .achievements-section::before {
@@ -1125,7 +1123,7 @@ section:nth-of-type(even) {
     padding: 4rem;
     text-align: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .about-cta::before {
@@ -1223,7 +1221,6 @@ section:nth-of-type(even) {
     .about-wrapper {
         padding: 0;
         width: 100%;
-        overflow-x: hidden;
     }
     
     .story-content {
@@ -1263,13 +1260,11 @@ section:nth-of-type(even) {
     
     .process-section {
         padding: 0;
-        overflow-x: hidden;
     }
     
     .about-cta {
         padding: 3rem 1rem;
         margin: 0 15px;
-        overflow-x: hidden;
     }
     
     .about-cta h3 {
@@ -1295,7 +1290,7 @@ section:nth-of-type(even) {
         radial-gradient(ellipse at bottom right, rgba(91, 102, 112, 0.06) 0%, transparent 40%),
         linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%);
     position: relative;
-    border-bottom: 1px solid rgba(0, 163, 224, 0.2);
+    border-bottom: none;
 }
 
 /* Floating geometric shapes */
@@ -1383,7 +1378,7 @@ section:nth-of-type(even) {
     border-radius: 16px;
     padding: 2.5rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
@@ -1538,7 +1533,6 @@ section:nth-of-type(even) {
 /* Ensure services don't overflow */
 .services-grid {
     width: 100%;
-    overflow-x: hidden;
 }
 
 /* Services CTA */
@@ -1579,7 +1573,6 @@ section:nth-of-type(even) {
         gap: 1.5rem;
         padding: 0 15px;
         width: 100%;
-        overflow-x: hidden;
     }
     
     .service-card {
@@ -1613,8 +1606,8 @@ section:nth-of-type(even) {
         linear-gradient(135deg, rgba(0, 163, 224, 0.02) 0%, transparent 50%),
         linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 50%, #2d2d2d 100%);
     position: relative;
-    border-top: 1px solid rgba(0, 163, 224, 0.15);
-    border-bottom: 1px solid rgba(0, 163, 224, 0.15);
+    border-top: none;
+    border-bottom: none;
     box-shadow: 
         inset 0 0 100px rgba(0, 0, 0, 0.3),
         0 0 50px rgba(0, 0, 0, 0.5);
@@ -1757,7 +1750,7 @@ section:nth-of-type(even) {
     padding: var(--section-padding);
     background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
     position: relative;
-    border-top: 1px solid rgba(0, 163, 224, 0.2);
+    border-top: none;
 }
 
 /* Add subtle overlay pattern */
@@ -1987,7 +1980,7 @@ section:nth-of-type(even) {
 .footer {
     background: #0a0a0a;
     padding: 3rem 0 1.5rem;
-    border-top: 3px solid var(--industrial-accent);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
 }
@@ -2212,7 +2205,7 @@ section:nth-of-type(even) {
 section {
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: visible;
 }
 
 /* Mobile Optimized Responsive Design */
@@ -2279,11 +2272,11 @@ section {
         justify-content: center;
         gap: 3rem;
         transition: var(--transition);
-        border-top: 2px solid var(--industrial-accent);
+        border-top: none;
         /* Hardware acceleration for smooth mobile menu */
         transform: translateX(0);
         will-change: transform;
-        overflow-x: hidden;
+        overflow: visible;
     }
     
     .nav-menu.active {
@@ -2327,7 +2320,6 @@ section {
         grid-template-columns: 1fr;
         padding: 0 15px;
         width: 100%;
-        overflow-x: hidden;
     }
     
     .portfolio-item {
