@@ -72,6 +72,11 @@
     }
 }
 
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     font-family: var(--font-primary);
     line-height: 1.6;
@@ -82,6 +87,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Industrial Grid Pattern Background - Simplified for mobile */
@@ -112,6 +119,8 @@ body::before {
     padding: var(--container-padding);
     position: relative;
     z-index: 2;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* Industrial Navigation */
@@ -654,6 +663,9 @@ section:nth-of-type(even) {
     gap: 5rem;
     margin-bottom: 5rem;
     align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .story-content {
@@ -1185,6 +1197,7 @@ section:nth-of-type(even) {
     .about-story {
         grid-template-columns: 1fr;
         gap: 3rem;
+        padding: 0;
     }
     
     .story-content {
@@ -1206,13 +1219,32 @@ section:nth-of-type(even) {
 }
 
 @media (max-width: 768px) {
+    /* About section mobile fixes */
+    .about-wrapper {
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .story-content {
+        padding: 0;
+        width: 100%;
+    }
+    
+    .story-video {
+        width: 100%;
+        padding: 0 15px;
+    }
+    
     .values-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        padding: 0 15px;
     }
     
     .achievements-section {
-        padding: 2rem;
+        padding: 2rem 15px;
+        margin: 0;
     }
     
     .achievements-grid {
@@ -1226,10 +1258,18 @@ section:nth-of-type(even) {
     
     .process-timeline {
         grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+    
+    .process-section {
+        padding: 0;
+        overflow-x: hidden;
     }
     
     .about-cta {
-        padding: 3rem 2rem;
+        padding: 3rem 1rem;
+        margin: 0 15px;
+        overflow-x: hidden;
     }
     
     .about-cta h3 {
@@ -1495,6 +1535,12 @@ section:nth-of-type(even) {
     transform: translateX(3px);
 }
 
+/* Ensure services don't overflow */
+.services-grid {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 /* Services CTA */
 .services-cta {
     text-align: center;
@@ -1531,6 +1577,9 @@ section:nth-of-type(even) {
     .services-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        padding: 0 15px;
+        width: 100%;
+        overflow-x: hidden;
     }
     
     .service-card {
@@ -2159,6 +2208,13 @@ section:nth-of-type(even) {
     height: 100%;
 }
 
+/* Prevent horizontal scroll on all sections */
+section {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /* Mobile Optimized Responsive Design */
 @media (max-width: 1024px) {
     :root {
@@ -2185,6 +2241,19 @@ section:nth-of-type(even) {
 }
 
 @media (max-width: 768px) {
+    /* Prevent horizontal scroll */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative !important;
+    }
+    
+    /* Ensure all content stays within viewport */
+    * {
+        max-width: 100% !important;
+    }
+    
     /* Optimize animations for mobile */
     * {
         animation-duration: 0s !important;
@@ -2203,6 +2272,7 @@ section:nth-of-type(even) {
         top: 80px;
         left: -100%;
         width: 100%;
+        max-width: 100%;
         height: calc(100vh - 80px);
         background: var(--steel-dark);
         flex-direction: column;
@@ -2213,6 +2283,7 @@ section:nth-of-type(even) {
         /* Hardware acceleration for smooth mobile menu */
         transform: translateX(0);
         will-change: transform;
+        overflow-x: hidden;
     }
     
     .nav-menu.active {
@@ -2239,6 +2310,13 @@ section:nth-of-type(even) {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
     }
     
     .services-grid {
@@ -2247,6 +2325,14 @@ section:nth-of-type(even) {
     
     .portfolio-grid {
         grid-template-columns: 1fr;
+        padding: 0 15px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .portfolio-item {
+        width: 100%;
+        max-width: 100%;
     }
     
     .about-stats {
@@ -2271,6 +2357,12 @@ section:nth-of-type(even) {
     :root {
         --section-padding: 60px 0;
         --container-padding: 0 15px;
+    }
+    
+    /* Extra protection against horizontal scroll */
+    body {
+        position: relative;
+        overflow-x: hidden !important;
     }
     
     .nav-container {
@@ -2351,5 +2443,40 @@ a:focus {
     * {
         animation: none !important;
         transition: none !important;
+    }
+}
+
+/* Global mobile overflow fix */
+@media (max-width: 768px) {
+    /* Prevent any element from causing horizontal scroll */
+    * {
+        box-sizing: border-box !important;
+    }
+    
+    /* Ensure images and iframes don't overflow */
+    img, iframe, video {
+        max-width: 100% !important;
+        height: auto;
+    }
+    
+    /* Fix for absolute/fixed positioned elements */
+    *[style*="position: absolute"],
+    *[style*="position: fixed"] {
+        max-width: 100vw !important;
+    }
+    
+    /* Ensure modals don't cause overflow */
+    .video-modal,
+    .modal-content {
+        max-width: 100% !important;
+    }
+    
+    /* Fix padding/margin issues that might cause overflow */
+    .container,
+    section > div {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 }

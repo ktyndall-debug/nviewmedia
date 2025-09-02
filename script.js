@@ -1,3 +1,32 @@
+// Prevent horizontal scroll on mobile
+document.addEventListener('DOMContentLoaded', function() {
+    // Set viewport meta properly for mobile
+    let viewport = document.querySelector('meta[name="viewport"]');
+    if (viewport) {
+        viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    }
+    
+    // Check for elements causing horizontal overflow
+    if (window.innerWidth <= 768) {
+        const detectHorizontalOverflow = () => {
+            const all = document.getElementsByTagName('*');
+            const docWidth = document.documentElement.offsetWidth;
+            
+            for (let i = 0; i < all.length; i++) {
+                if (all[i].offsetWidth > docWidth) {
+                    console.warn('Element causing horizontal overflow:', all[i]);
+                    all[i].style.maxWidth = '100%';
+                    all[i].style.overflowX = 'hidden';
+                }
+            }
+        };
+        
+        // Run on load and after dynamic content changes
+        detectHorizontalOverflow();
+        setTimeout(detectHorizontalOverflow, 1000);
+    }
+});
+
 // Initialize AOS (Animate On Scroll)
 AOS.init({
     duration: 800,
