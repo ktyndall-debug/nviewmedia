@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#0A0A0F"/>
+  
+  <!-- Cyberpunk Grid Background -->
+  <g opacity="0.3">
+    <line x1="0" y1="16" x2="64" y2="16" stroke="#00D9FF" stroke-width="0.5"/>
+    <line x1="0" y1="32" x2="64" y2="32" stroke="#00D9FF" stroke-width="0.5"/>
+    <line x1="0" y1="48" x2="64" y2="48" stroke="#00D9FF" stroke-width="0.5"/>
+    <line x1="16" y1="0" x2="16" y2="64" stroke="#00D9FF" stroke-width="0.5"/>
+    <line x1="32" y1="0" x2="32" y2="64" stroke="#00D9FF" stroke-width="0.5"/>
+    <line x1="48" y1="0" x2="48" y2="64" stroke="#00D9FF" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Outer hexagon frame -->
+  <path d="M32 4 L54 18 L54 46 L32 60 L10 46 L10 18 Z" 
+        stroke="#00D9FF" 
+        stroke-width="2" 
+        fill="none"
+        opacity="0.8"/>
+  
+  <!-- Inner glow -->
+  <path d="M32 8 L50 20 L50 44 L32 56 L14 44 L14 20 Z" 
+        fill="url(#innerGlow)"
+        opacity="0.3"/>
+  
+  <!-- Letter N - Cyberpunk style -->
+  <g>
+    <!-- N main strokes with glitch effect -->
+    <path d="M20 44 L20 20 L28 36 L36 20 L36 44" 
+          stroke="url(#neonGradient)" 
+          stroke-width="3" 
+          stroke-linecap="square"
+          fill="none"/>
+    
+    <!-- Glitch shadow 1 -->
+    <path d="M20 44 L20 20 L28 36 L36 20 L36 44" 
+          stroke="#FF10F0" 
+          stroke-width="3" 
+          stroke-linecap="square"
+          fill="none"
+          opacity="0.5"
+          transform="translate(-1, 1)"/>
+    
+    <!-- Glitch shadow 2 -->
+    <path d="M20 44 L20 20 L28 36 L36 20 L36 44" 
+          stroke="#9D00FF" 
+          stroke-width="3" 
+          stroke-linecap="square"
+          fill="none"
+          opacity="0.5"
+          transform="translate(1, -1)"/>
+    
+    <!-- V overlay for NView -->
+    <path d="M38 22 L44 38 L50 22" 
+          stroke="#00FFD1" 
+          stroke-width="2" 
+          stroke-linecap="square"
+          fill="none"
+          opacity="0.9"/>
+  </g>
+  
+  <!-- Corner accents -->
+  <g opacity="0.8">
+    <path d="M8 12 L8 8 L12 8" stroke="#00D9FF" stroke-width="1.5" stroke-linecap="square"/>
+    <path d="M52 8 L56 8 L56 12" stroke="#00D9FF" stroke-width="1.5" stroke-linecap="square"/>
+    <path d="M56 52 L56 56 L52 56" stroke="#00D9FF" stroke-width="1.5" stroke-linecap="square"/>
+    <path d="M12 56 L8 56 L8 52" stroke="#00D9FF" stroke-width="1.5" stroke-linecap="square"/>
+  </g>
+  
+  <!-- Scan line effect -->
+  <rect x="0" y="0" width="64" height="2" fill="url(#scanline)" opacity="0.4">
+    <animate attributeName="y" 
+             values="0;64;0" 
+             dur="3s" 
+             repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Definitions -->
+  <defs>
+    <!-- Neon gradient for N -->
+    <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D9FF"/>
+      <stop offset="50%" stop-color="#00FFD1"/>
+      <stop offset="100%" stop-color="#00D9FF"/>
+    </linearGradient>
+    
+    <!-- Inner glow gradient -->
+    <radialGradient id="innerGlow">
+      <stop offset="0%" stop-color="#00D9FF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#9D00FF" stop-opacity="0"/>
+    </radialGradient>
+    
+    <!-- Scanline gradient -->
+    <linearGradient id="scanline" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00D9FF" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00D9FF" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#00D9FF" stop-opacity="0"/>
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Apply glow to entire logo -->
+  <style>
+    path {
+      filter: url(#glow);
+    }
+  </style>
+</svg>
