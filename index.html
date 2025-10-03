@@ -144,6 +144,104 @@
                 opacity: 0.7 !important;
             }
         }
+        
+        /* Portfolio Section Enhancements */
+        .portfolio {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0, 163, 224, 0.03) 50%, rgba(0,0,0,0) 100%);
+        }
+        
+        /* Portfolio play button overlay */
+        .portfolio-play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            z-index: 2;
+        }
+        
+        .portfolio-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .portfolio-image:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 163, 224, 0.3);
+        }
+        
+        .portfolio-image:hover .portfolio-play-overlay {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .portfolio-play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 163, 224, 0.4);
+        }
+        
+        .portfolio-play-btn:hover {
+            transform: scale(1.15);
+            background: #00A3E0;
+            box-shadow: 0 12px 48px rgba(0, 163, 224, 0.6);
+        }
+        
+        .portfolio-play-btn svg {
+            width: 40px;
+            height: 40px;
+            color: #00A3E0;
+            transition: color 0.3s ease;
+        }
+        
+        .portfolio-play-btn:hover svg {
+            color: white;
+        }
+        
+        /* Mobile: Always show play button */
+        @media (max-width: 768px) {
+            .portfolio-play-overlay {
+                opacity: 1;
+                background: rgba(0, 0, 0, 0.3);
+            }
+            
+            .portfolio-play-btn {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .portfolio-play-btn svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
+        /* Portfolio grid enhancements */
+        .portfolio-grid {
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -516,14 +614,9 @@
     <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">PORTFOLIO</span>
                 <h2>Our Work</h2>
-                <p class="section-subtitle">Showcasing Creative Excellence</p>
-            </div>
-            <div class="portfolio-filter" data-aos="fade-up" data-aos-delay="200">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="corporate">Corporate</button>
-                <button class="filter-btn" data-filter="marketing">Marketing</button>
-                <button class="filter-btn" data-filter="events">Events</button>
+                <p class="section-subtitle">A showcase of our creative excellence and storytelling</p>
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item corporate" data-aos="fade-up" data-aos-delay="100">
@@ -536,14 +629,16 @@
                                     loading="lazy"
                                     data-video-id="1107876548"
                                     data-title="Corporate Profile"
-                                    data-category="Manufacturing Company">
+                                    data-category="Manufacturing Company"
+                                    style="pointer-events: none;">
                             </iframe>
                         </div>
-                        <div class="portfolio-overlay">
-                            <h4>Corporate Profile</h4>
-                            <p>Manufacturing Company</p>
-                            <button class="expand-video" data-video-id="1107876548" data-title="Corporate Profile" data-category="Manufacturing Company">
-                                <span>🔍</span> View Full Screen
+                        <div class="portfolio-play-overlay">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1107876548', 'Corporate Profile', 'Manufacturing Company')">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -558,14 +653,16 @@
                                     loading="lazy"
                                     data-video-id="1102390437"
                                     data-title="Product Launch"
-                                    data-category="Technology Startup">
+                                    data-category="Technology Startup"
+                                    style="pointer-events: none;">
                             </iframe>
                         </div>
-                        <div class="portfolio-overlay">
-                            <h4>Product Launch</h4>
-                            <p>Technology Startup</p>
-                            <button class="expand-video" data-video-id="1102390437" data-title="Product Launch" data-category="Technology Startup">
-                                <span>🔍</span> View Full Screen
+                        <div class="portfolio-play-overlay">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1102390437', 'Product Launch', 'Technology Startup')">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -580,14 +677,16 @@
                                     loading="lazy"
                                     data-video-id="1054376688"
                                     data-title="Annual Conference"
-                                    data-category="Professional Association">
+                                    data-category="Professional Association"
+                                    style="pointer-events: none;">
                             </iframe>
                         </div>
-                        <div class="portfolio-overlay">
-                            <h4>Annual Conference</h4>
-                            <p>Professional Association</p>
-                            <button class="expand-video" data-video-id="1054376688" data-title="Annual Conference" data-category="Professional Association">
-                                <span>🔍</span> View Full Screen
+                        <div class="portfolio-play-overlay">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1054376688', 'Annual Conference', 'Professional Association')">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -602,14 +701,16 @@
                                     loading="lazy"
                                     data-video-id="951610881"
                                     data-title="Training Series"
-                                    data-category="Healthcare Organization">
+                                    data-category="Healthcare Organization"
+                                    style="pointer-events: none;">
                             </iframe>
                         </div>
-                        <div class="portfolio-overlay">
-                            <h4>Training Series</h4>
-                            <p>Healthcare Organization</p>
-                            <button class="expand-video" data-video-id="951610881" data-title="Training Series" data-category="Healthcare Organization">
-                                <span>🔍</span> View Full Screen
+                        <div class="portfolio-play-overlay">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('951610881', 'Training Series', 'Healthcare Organization')">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -624,14 +725,16 @@
                                     loading="lazy"
                                     data-video-id="1015511698"
                                     data-title="Brand Story"
-                                    data-category="Local Restaurant">
+                                    data-category="Local Restaurant"
+                                    style="pointer-events: none;">
                             </iframe>
                         </div>
-                        <div class="portfolio-overlay">
-                            <h4>Brand Story</h4>
-                            <p>Local Restaurant</p>
-                            <button class="expand-video" data-video-id="1015511698" data-title="Brand Story" data-category="Local Restaurant">
-                                <span>🔍</span> View Full Screen
+                        <div class="portfolio-play-overlay">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1015511698', 'Brand Story', 'Local Restaurant')">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -646,14 +749,16 @@
                                     loading="lazy"
                                     data-video-id="990312366"
                                     data-title="Grand Opening"
-                                    data-category="Retail Store">
+                                    data-category="Retail Store"
+                                    style="pointer-events: none;">
                             </iframe>
                         </div>
-                        <div class="portfolio-overlay">
-                            <h4>Grand Opening</h4>
-                            <p>Retail Store</p>
-                            <button class="expand-video" data-video-id="990312366" data-title="Grand Opening" data-category="Retail Store">
-                                <span>🔍</span> View Full Screen
+                        <div class="portfolio-play-overlay">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('990312366', 'Grand Opening', 'Retail Store')">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -813,6 +918,23 @@
             modalTitle.textContent = '2025 Showreel';
             modalCategory.textContent = 'NView Media';
             modalIframe.src = 'https://player.vimeo.com/video/1107876548?autoplay=1&loop=0&byline=0&title=0&portrait=0&controls=1';
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Function to open portfolio videos in modal
+        function openPortfolioVideo(videoId, title, category) {
+            const modal = document.getElementById('videoModal');
+            const modalIframe = document.getElementById('modalIframe');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalCategory = document.getElementById('modalCategory');
+            
+            // Set modal content
+            modalTitle.textContent = title;
+            modalCategory.textContent = category;
+            modalIframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=0&byline=0&title=0&portrait=0&controls=1`;
             
             // Show modal
             modal.classList.add('active');
