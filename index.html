@@ -242,6 +242,145 @@
         .portfolio-item {
             transition: transform 0.3s ease;
         }
+        
+        /* Enhanced Modal Styling - Polished Design */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 1;
+        }
+        
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1400px;
+            aspect-ratio: 16/9;
+            z-index: 2;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 100px rgba(0, 163, 224, 0.3),
+                        0 0 0 1px rgba(0, 163, 224, 0.2);
+            animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-close-btn:hover {
+            background: #00A3E0;
+            border-color: #00A3E0;
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 4px 20px rgba(0, 163, 224, 0.4);
+        }
+        
+        .modal-close-btn svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+        
+        .modal-video {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .modal-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Mobile Modal Adjustments */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                border-radius: 12px;
+            }
+            
+            .modal-close-btn {
+                top: -45px;
+                right: 5px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .modal-close-btn svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 98%;
+                border-radius: 8px;
+            }
+            
+            .modal-close-btn {
+                top: 10px;
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -634,7 +773,7 @@
                             </iframe>
                         </div>
                         <div class="portfolio-play-overlay">
-                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1107876548', 'Corporate Profile', 'Manufacturing Company')">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1107876548')">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
                                     <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
@@ -658,7 +797,7 @@
                             </iframe>
                         </div>
                         <div class="portfolio-play-overlay">
-                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1102390437', 'Product Launch', 'Technology Startup')">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1102390437')">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
                                     <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
@@ -682,7 +821,7 @@
                             </iframe>
                         </div>
                         <div class="portfolio-play-overlay">
-                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1054376688', 'Annual Conference', 'Professional Association')">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1054376688')">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
                                     <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
@@ -706,7 +845,7 @@
                             </iframe>
                         </div>
                         <div class="portfolio-play-overlay">
-                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('951610881', 'Training Series', 'Healthcare Organization')">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('951610881')">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
                                     <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
@@ -730,7 +869,7 @@
                             </iframe>
                         </div>
                         <div class="portfolio-play-overlay">
-                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1015511698', 'Brand Story', 'Local Restaurant')">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('1015511698')">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
                                     <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
@@ -754,7 +893,7 @@
                             </iframe>
                         </div>
                         <div class="portfolio-play-overlay">
-                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('990312366', 'Grand Opening', 'Retail Store')">
+                            <button class="portfolio-play-btn" onclick="openPortfolioVideo('990312366')">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
                                     <path d="M9 8l7 4-7 4V8z" fill="currentColor"/>
@@ -856,13 +995,11 @@
     <div id="videoModal" class="video-modal">
         <div class="modal-backdrop"></div>
         <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-info">
-                    <h3 id="modalTitle">Video Title</h3>
-                    <p id="modalCategory">Category</p>
-                </div>
-                <button class="modal-close" id="closeModal">×</button>
-            </div>
+            <button class="modal-close-btn" id="closeModal">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
             <div class="modal-video">
                 <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             </div>
@@ -911,12 +1048,8 @@
         function openShowreelModal() {
             const modal = document.getElementById('videoModal');
             const modalIframe = document.getElementById('modalIframe');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalCategory = document.getElementById('modalCategory');
             
-            // Set modal content
-            modalTitle.textContent = '2025 Showreel';
-            modalCategory.textContent = 'NView Media';
+            // Set video source
             modalIframe.src = 'https://player.vimeo.com/video/1107876548?autoplay=1&loop=0&byline=0&title=0&portrait=0&controls=1';
             
             // Show modal
@@ -925,21 +1058,42 @@
         }
         
         // Function to open portfolio videos in modal
-        function openPortfolioVideo(videoId, title, category) {
+        function openPortfolioVideo(videoId) {
             const modal = document.getElementById('videoModal');
             const modalIframe = document.getElementById('modalIframe');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalCategory = document.getElementById('modalCategory');
             
-            // Set modal content
-            modalTitle.textContent = title;
-            modalCategory.textContent = category;
+            // Set video source
             modalIframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=0&byline=0&title=0&portrait=0&controls=1`;
             
             // Show modal
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+        
+        // Close modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('videoModal');
+            const closeBtn = document.getElementById('closeModal');
+            const backdrop = modal.querySelector('.modal-backdrop');
+            const modalIframe = document.getElementById('modalIframe');
+            
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                // Stop video playback
+                modalIframe.src = '';
+            }
+            
+            closeBtn.addEventListener('click', closeModal);
+            backdrop.addEventListener('click', closeModal);
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        });
     </script>
 </body>
 </html>
