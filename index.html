@@ -63,6 +63,72 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Inline CSS Fix for Background Gradient Issue -->
+    <style>
+        /* Fix for the harsh blue rectangular gradient in about section */
+        .about {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Remove or override any harsh rectangular backgrounds */
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            right: -5%;
+            bottom: -10%;
+            background: radial-gradient(
+                ellipse 120% 80% at 50% 40%,
+                rgba(0, 163, 224, 0.08) 0%,
+                rgba(0, 163, 224, 0.05) 25%,
+                rgba(0, 163, 224, 0.02) 50%,
+                transparent 70%
+            );
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Ensure content is above the background */
+        .about > .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Smooth out any achievement cards backgrounds */
+        .achievements-section {
+            background: transparent !important;
+            position: relative;
+        }
+        
+        .achievements-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140%;
+            height: 120%;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(0, 163, 224, 0.06) 0%,
+                rgba(0, 163, 224, 0.03) 40%,
+                transparent 70%
+            );
+            z-index: -1;
+            filter: blur(60px);
+        }
+        
+        /* Remove any hard-edged boxes */
+        .achievement-card,
+        .value-item {
+            background: rgba(255, 255, 255, 0.03) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
